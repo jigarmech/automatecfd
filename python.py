@@ -35,7 +35,7 @@ l1.grid(row=0, column=0, pady = 5, padx = 5)
 
 ent1.grid(row=0, column=1,pady = 5, padx = 5, columnspan = 2)
 #Project name end
-
+#------------------------------------
 #Solid model widget
 def CreateWidgets(): 
     link_Label = Label(root, text ="Choose CAD file : ", 
@@ -70,9 +70,9 @@ def CreateWidgets():
     dest_browseButton.grid(row = 2, column = 3, 
                         pady = 5, padx = 5) 
      
-    copyButton = Button(root, text ="Copy File", 
-                        command = CopyFile, width = 15) 
-    copyButton.grid(row = 3, column = 1, 
+    copyButton = Button(root, text ="Mesh & Update", 
+                        command = MeshUpdate, width = 15) 
+    copyButton.grid(row = 7, column = 1, 
                     pady = 5, padx = 5) 
      
 #    moveButton = Button(root, text ="Move File", 
@@ -106,7 +106,7 @@ def DestinationBrowse():
     # root.destinationText.insert() 
     root.destinationText.insert('1', destinationdirectory) 
      
-def CopyFile(): 
+def MeshUpdate(): 
     # Retrieving the source file selected by the 
     # user in the SourceBrowse() and storing it in a 
     # variable named files_list 
@@ -168,5 +168,31 @@ destinationLocation = StringVar()
 CreateWidgets() 
 
 #Solid model widget end
+#---------------------
 
+#Mesh widget starts
+
+Mesh = ["Coarse", "Medium", "Fine"]
+text_Input=StringVar()
+variable = StringVar(root)
+variable.set(Mesh[0])
+l5 = Label(root, text="Mesh Selection : ", bg ="#E8D579")
+l5.grid(row=4)
+w = OptionMenu(root, variable, *Mesh)
+w.grid(row=4, column=1)
+
+#Mesh widget ends
+#----------------------------
+
+Solver = ["icoFoam", "simpleFoam", "PISO"]
+text_Input=StringVar()
+variable1 = StringVar(root)
+variable1.set(Solver[0])
+l6 = Label(root, text="Solver Selection : ", bg ="#E8D579")
+l6.grid(row=5)
+x = OptionMenu(root, variable1, *Solver)
+x.grid(row=5, column=1)
+# =============================================================================
+# Widgets end
+# =============================================================================
 root.mainloop()
